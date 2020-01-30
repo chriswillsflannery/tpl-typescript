@@ -1,0 +1,12 @@
+.buyandsell {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: 40rem 40rem;
+  grid-gap: 10rem;
+  justify-content: center;
+  height: 40rem;
+}
+
+.buyGrid {
+  border: 2px solid white;
+}

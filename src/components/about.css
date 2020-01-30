@@ -1,0 +1,30 @@
+.about {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: 40rem 40rem;
+  grid-gap: 10rem;
+  justify-content: center;
+  height: 40rem;
+}
+
+.about-grid {
+  /* border: 2px solid white; */
+}
+
+.logo {
+  display: flex;
+  align-self: center;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.textinfo {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  border: 1px solid white;
+  padding: 2rem;
+}
+

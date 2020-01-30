@@ -1,10 +1,12 @@
 import React from 'react';
+import './buyandsell.css';
 
 class BuyAndSell extends React.Component {
   render() {
     return (
-      <div>
-        <h2>Buy & Sell</h2>
+      <div className="buyandsell">
+        <div className="buyGrid"></div>
+        <div className="buyGrid"></div>
       </div>
     )
   }
