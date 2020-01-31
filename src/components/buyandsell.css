@@ -8,5 +8,42 @@
 }
 
 .buyGrid {
-  border: 2px solid white;
+  margin-top: 5rem;
+  background-color: rgba(0,0,0,0.8);
+  border-radius: 10px;
+}
+
+.buyHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--grey);
+  height: 4rem;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.info {
+  display: grid;
+  grid-template-rows: 4rem 10rem 4rem;
+  /* border: 1px solid red; */
+  margin: 3rem;
+}
+
+.info-line {
+  display: grid;
+  grid-template-columns: 10rem 10rem 10rem;
+}
+
+.listings {
+  display: block;
+}
+
+.listing {
+  display: grid;
+  grid-template-columns: 10rem 10rem 10rem;
+  height: 2rem;
 }
