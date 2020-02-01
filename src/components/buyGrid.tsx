@@ -1,42 +1,32 @@
 import React from 'react';
 
-interface MyDeals {
-  dealID: string;
-  asset: string;
-}
-
-interface MarketPlace {
+interface State {
   dealID: string;
   asset: string;
 }
 
 interface Props {
   name: string;
-  myDeals?: MyDeals[];
-  marketplace?: MarketPlace[];
-}
-
-type Object = {
-  dealID: string,
-  asset: string,
+  state?: State[];
+  create?: any;
+  view: string;
 }
 
 const BuyGrid: React.FC<Props> = (props) => {
   console.log('props', props);
   const listings: object[] = [];
-  if (props.myDeals && !listings[0]) {
-    (props.myDeals.forEach(obj => {
+  props.state &&
+    (props.state.forEach((obj, idx) => {
       listings.push(
-        <div className="listing">
+        <div key={idx} className="listing">
           <h3 className="listing-attribute">{obj.dealID}</h3>
           <h3 className="listing-attribute">{obj.asset}</h3>
           <h3 className="listing-link">
-            <a href="#">VIEW BIDS</a>
+            <a href="#">{props.view}</a>
           </h3>
         </div>
       )
     }))
-  }
 
   return (
     <main className="buyGrid">
@@ -51,9 +41,10 @@ const BuyGrid: React.FC<Props> = (props) => {
         <div className="info-line listings">
           {listings}
         </div>
-        <div className="info-line createNew">
-          <h3><a href="#">CREATE DEAL</a></h3>
-        </div>
+        {props.name === 'My Deals' &&
+          <div className="info-line createNew">
+            <h3><a href="#">CREATE DEAL</a></h3>
+          </div>}
       </div>
     </main>
   )

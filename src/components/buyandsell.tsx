@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import BuyGrid from './buyGrid';
 import './buyandsell.css';
 
@@ -47,14 +47,12 @@ function reducer(state: any, action: any) {
 }
 
 const BuyAndSell: React.FC = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <div className="buyandsell">
-      <BuyGrid name="My Deals" myDeals={state.deals} />
-      <BuyGrid name="Marketplace" marketplace={state.marketplace} />
+      <BuyGrid name="My Deals" view="View Bids" state={state.deals} create={() => dispatch({ type: 'setMyDeals' })} />
+      <BuyGrid name="Marketplace" view="Place Bid" state={state.marketplace} />
     </div>
   )
 }
