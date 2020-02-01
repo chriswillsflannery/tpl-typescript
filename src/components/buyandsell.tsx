@@ -1,6 +1,8 @@
 import React, { useState, useReducer } from 'react';
 import BuyGrid from './buyGrid';
-import CreateModal from '../modal/createModal';
+import Backdrop from './Backdrop';
+import Modal from './Modal';
+// import CreateModal from '../modal/createModal';
 import './buyandsell.css';
 
 const initialState = {
@@ -49,19 +51,31 @@ function reducer(state: any, action: any) {
 
 const BuyAndSell: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [createModal, setCreateModal] = useState(false);
+  const [creating, setCreating] = useState(true);
+  // const [createModal, setCreateModal] = useState(false);
+
+  // const removeModal = () => {
+  //   setCreateModal(false);
+  // }
 
   return (
     <>
-      {createModal &&
-        <CreateModal
-          create={() => dispatch({ type: 'setMyDeals' })} />}
+      {/* {createModal &&
+        (
+          <>
+            <CreateModal create={() => dispatch({ type: 'setMyDeals' })} /> />
+            <div className="testModal" onClick={removeModal}></div>
+          </>
+        )} */}
+      {creating && <Modal />}
+      {creating && <Backdrop />}
       <div className="buyandsell">
         <BuyGrid
           name="My Deals"
           view="View Bids"
           state={state.deals}
-          create={setCreateModal} />
+        // create={setCreateModal}
+        />
         <BuyGrid
           name="Marketplace"
           view="Place Bid"
