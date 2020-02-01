@@ -38,6 +38,10 @@
   grid-template-columns: 10rem 10rem 10rem;
 }
 
+.descriptors {
+  color: var(--grey);
+}
+
 .listings {
   display: block;
 }
@@ -46,4 +50,22 @@
   display: grid;
   grid-template-columns: 10rem 10rem 10rem;
   height: 2rem;
+}
+
+.listing-attribute {
+  color: var(--green);
+}
+
+.listing-link a {
+  color: white;
+  text-decoration: none;
+}
+
+.createNew {
+  color: var(--grey);
+}
+
+.createNew a {
+  text-decoration: none;
+  color: var(--grey);
 }
