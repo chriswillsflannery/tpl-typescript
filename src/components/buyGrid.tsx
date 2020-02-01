@@ -43,7 +43,10 @@ const BuyGrid: React.FC<Props> = (props) => {
         </div>
         {props.name === 'My Deals' &&
           <div className="info-line createNew">
-            <h3><a href="#">CREATE DEAL</a></h3>
+            <button onClick={() => {
+              console.log('hit');
+              props.create(true)
+            }}>CREATE DEAL</button>
           </div>}
       </div>
     </main>
