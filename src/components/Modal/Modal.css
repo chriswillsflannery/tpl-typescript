@@ -33,6 +33,7 @@
 
 .modal-header #x {
   cursor: pointer;
+  padding: 5px;
 }
 
 .modal-form {
@@ -65,4 +66,19 @@
   .modal {
     width: 90%;
   }
+}
+
+.modal-grid-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  color: black;
+  margin-right: 1rem;
+}
+
+.modal-grid-list li {
+  list-style-type: none;
+}
+
+.modal-grid-list button {
+  background-color: var(--lightgreen);
 }

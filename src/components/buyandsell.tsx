@@ -2,6 +2,7 @@ import React, { useState, useReducer } from 'react';
 import BuyGrid from './buyGrid';
 import Backdrop from './Backdrop/Backdrop';
 import CreateModal from './Modal/CreateModal';
+import BidsModal from './Modal/BidsModal';
 import './buyandsell.css';
 
 const initialState = {
@@ -53,24 +54,40 @@ const BuyAndSell: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [creating, setCreating] = useState(false);
   const [placing, setPlacing] = useState(false);
+  const [bidding, setBidding] = useState(false);
   const [assetName, setAssetName] = useState('');
+  const [viewBidsClicked, setViewBidsClicked] = useState('');
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    //dispatch action
-    dispatch({ type: 'setMyDeals', payload: { dealID: 'XXXXXX', asset: assetName } });
-    // close backdrop
-    setCreating(false);
+    if (creating) {
+      //dispatch action
+      dispatch({ type: 'setMyDeals', payload: { dealID: 'XXXXXX', asset: assetName } });
+      // close backdrop
+      setCreating(false);
+    } else if (placing) {
+      setPlacing(false);
+      alert("Bid Placed!");
+    }
   }
 
-  const handleBDClick = (e: any) => {
+  const handleXClick = (e: any) => {
     console.log("HANDLED");
     setCreating(false);
+    setPlacing(false);
+    setBidding(false);
+  }
+
+  const handleAccept = () => {
+    setBidding(false);
+    alert("Bid accepted!")
+    // move to next window
+    window.open('/', '_blank');
   }
 
   return (
     <>
-      {creating && <CreateModal handleClick={handleBDClick}>
+      {creating && <CreateModal action="creating" handleClick={handleXClick}>
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <input
@@ -88,7 +105,7 @@ const BuyAndSell: React.FC = () => {
           </div>
         </form>
       </CreateModal>}
-      {placing && <CreateModal handleClick={handleBDClick}>
+      {placing && <CreateModal action="placing" handleClick={handleXClick}>
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <input
@@ -97,7 +114,7 @@ const BuyAndSell: React.FC = () => {
               value={assetName}
               id="assetName"
               type="text"
-              placeholder="Asset Name"></input>
+              placeholder="Bid Value"></input>
           </div>
           <div className="form-control">
             <input
@@ -106,13 +123,21 @@ const BuyAndSell: React.FC = () => {
           </div>
         </form>
       </CreateModal>}
-      {(creating || placing) && <Backdrop />}
+      {bidding && <BidsModal
+        handleClick={handleXClick}
+        handleAccept={handleAccept}
+      >
+
+      </BidsModal>}
+      {(creating || placing || bidding) && <Backdrop />}
       <div className="buyandsell">
         <BuyGrid
           name="My Deals"
           view="View Bids"
           state={state.deals}
           create={setCreating}
+          bid={setBidding}
+          vbc={setViewBidsClicked}
         />
         <BuyGrid
           name="Marketplace"

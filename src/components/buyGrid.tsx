@@ -10,6 +10,8 @@ interface Props {
   state?: State[];
   create?: any;
   place?: any;
+  bid?: any;
+  vbc?: any;
   view: string;
 }
 
@@ -23,7 +25,7 @@ const BuyGrid: React.FC<Props> = (props) => {
           <h3 className="listing-attribute">{obj.dealID}</h3>
           <h3 className="listing-attribute">{obj.asset}</h3>
           <h3 className="listing-link">
-            {props.name === 'My Deals' && <a href="#">{props.view}</a>}
+            {props.name === 'My Deals' && <a onClick={() => props.bid(true)}>{props.view}</a>}
             {props.name === 'Marketplace' && <a onClick={() => props.place(true)}>{props.view}</a>}
           </h3>
         </div>

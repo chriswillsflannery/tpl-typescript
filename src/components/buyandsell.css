@@ -24,15 +24,23 @@
   margin-top: 5rem;
   display: grid;
   grid-template-columns: 40rem 40rem;
-  grid-gap: 10rem;
+  grid-gap: 5%;
   justify-content: center;
-  height: 40rem;
+  height: 100vh;
+}
+
+@media (max-width: 1200px) {
+  .buyandsell {
+    grid-template-columns: 40rem;
+    grid-template-rows: auto;
+  }
 }
 
 .buyGrid {
   margin-top: 5rem;
   background-color: rgba(0,0,0,0.8);
   border-radius: 10px;
+  height: 35rem;
 }
 
 .buyHeader {
@@ -81,6 +89,7 @@
 .listing-link a {
   color: white;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .createNew button {
