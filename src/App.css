@@ -3,6 +3,7 @@
   --black: #0d1012;
   --green: #047a4d;
   --grey: #4f5050;
+  --lightgreen: rgb(218, 255, 225);
   background-color: var(--black);
 }
 

@@ -1,3 +1,25 @@
+
+.form-control {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+#assetName {
+  text-align: center;
+  font-size: 1rem;
+  padding: 1rem 5rem;
+}
+
+#submitName {
+  font-size: 1rem;
+  width: 8rem;
+  height: 2rem;
+  border: 1px solid grey;
+  background-color: var(--lightgreen);
+  border-radius: 5px;
+}
+
 .buyandsell {
   margin-top: 5rem;
   display: grid;
@@ -28,7 +50,7 @@
 
 .info {
   display: grid;
-  grid-template-rows: 4rem 10rem 4rem;
+  grid-template-rows: 4rem 15rem 3rem;
   /* border: 1px solid red; */
   margin: 3rem;
 }
@@ -61,13 +83,10 @@
   text-decoration: none;
 }
 
-.createNew {
-  color: var(--grey);
-}
-
-.createNew a {
-  text-decoration: none;
-  color: var(--grey);
+.createNew button {
+  font-size: 1rem;
+  background-color: var(--lightgreen);
+  border-radius: 5px;
 }
 
 

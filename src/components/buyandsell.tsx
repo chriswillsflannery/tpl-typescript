@@ -1,8 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import BuyGrid from './buyGrid';
-import Backdrop from './Backdrop';
-import Modal from './Modal';
-// import CreateModal from '../modal/createModal';
+import Backdrop from './Backdrop/Backdrop';
+import CreateModal from './Modal/CreateModal';
 import './buyandsell.css';
 
 const initialState = {
@@ -31,12 +30,13 @@ const initialState = {
 function reducer(state: any, action: any) {
   switch (action.type) {
     case 'setMyDeals':
+
       return {
+        ...state,
         deals: [
           ...state.deals,
           action.payload
-        ],
-        ...state
+        ]
       };
     case 'setMarketPlace':
       return {
@@ -51,35 +51,74 @@ function reducer(state: any, action: any) {
 
 const BuyAndSell: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [creating, setCreating] = useState(true);
-  // const [createModal, setCreateModal] = useState(false);
+  const [creating, setCreating] = useState(false);
+  const [placing, setPlacing] = useState(false);
+  const [assetName, setAssetName] = useState('');
 
-  // const removeModal = () => {
-  //   setCreateModal(false);
-  // }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    //dispatch action
+    dispatch({ type: 'setMyDeals', payload: { dealID: 'XXXXXX', asset: assetName } });
+    // close backdrop
+    setCreating(false);
+  }
+
+  const handleBDClick = (e: any) => {
+    console.log("HANDLED");
+    setCreating(false);
+  }
 
   return (
     <>
-      {/* {createModal &&
-        (
-          <>
-            <CreateModal create={() => dispatch({ type: 'setMyDeals' })} /> />
-            <div className="testModal" onClick={removeModal}></div>
-          </>
-        )} */}
-      {creating && <Modal />}
-      {creating && <Backdrop />}
+      {creating && <CreateModal handleClick={handleBDClick}>
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <input
+              onChange={e => setAssetName(e.target.value)}
+              name="assetName"
+              value={assetName}
+              id="assetName"
+              type="text"
+              placeholder="Asset Name"></input>
+          </div>
+          <div className="form-control">
+            <input
+              id="submitName"
+              type="submit"></input>
+          </div>
+        </form>
+      </CreateModal>}
+      {placing && <CreateModal handleClick={handleBDClick}>
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <input
+              onChange={e => setAssetName(e.target.value)}
+              name="assetName"
+              value={assetName}
+              id="assetName"
+              type="text"
+              placeholder="Asset Name"></input>
+          </div>
+          <div className="form-control">
+            <input
+              id="submitName"
+              type="submit"></input>
+          </div>
+        </form>
+      </CreateModal>}
+      {(creating || placing) && <Backdrop />}
       <div className="buyandsell">
         <BuyGrid
           name="My Deals"
           view="View Bids"
           state={state.deals}
-        // create={setCreateModal}
+          create={setCreating}
         />
         <BuyGrid
           name="Marketplace"
           view="Place Bid"
-          state={state.marketplace} />
+          state={state.marketplace}
+          place={setPlacing} />
       </div>
     </>
   )

@@ -9,11 +9,12 @@ interface Props {
   name: string;
   state?: State[];
   create?: any;
+  place?: any;
   view: string;
 }
 
 const BuyGrid: React.FC<Props> = (props) => {
-  console.log('props', props);
+  // console.log('props', props);
   const listings: object[] = [];
   props.state &&
     (props.state.forEach((obj, idx) => {
@@ -22,7 +23,8 @@ const BuyGrid: React.FC<Props> = (props) => {
           <h3 className="listing-attribute">{obj.dealID}</h3>
           <h3 className="listing-attribute">{obj.asset}</h3>
           <h3 className="listing-link">
-            <a href="#">{props.view}</a>
+            {props.name === 'My Deals' && <a href="#">{props.view}</a>}
+            {props.name === 'Marketplace' && <a onClick={() => props.place(true)}>{props.view}</a>}
           </h3>
         </div>
       )
@@ -30,9 +32,9 @@ const BuyGrid: React.FC<Props> = (props) => {
 
   return (
     <main className="buyGrid">
-      <div className="buyHeader">
+      <header className="buyHeader">
         <h2>{props.name}</h2>
-      </div>
+      </header>
       <div className="info">
         <div className="info-line descriptors">
           <h3>DEAL ID</h3>
@@ -45,7 +47,7 @@ const BuyGrid: React.FC<Props> = (props) => {
           <div className="info-line createNew">
             <button onClick={() => {
               console.log('hit');
-              // props.create(true)
+              props.create(true)
             }}>CREATE DEAL</button>
           </div>}
       </div>
