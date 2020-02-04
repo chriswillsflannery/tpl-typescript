@@ -1,4 +1,4 @@
-# Chris Flannery for Triple Point Liquidity
+# Chris Flannery for TPL
 
 # to run, navigate to root directory and 'npm start'
 
