@@ -4,12 +4,13 @@
 
 Component hierarchy is:
 
-         App
-       /     \
-  about       buyandsell
-            /           \
-         buyGrid    Create / Bids Modal
-                    Backdrop (for modal)
+
+                 App
+               /     \
+          about       buyandsell
+                    /           \
+                 buyGrid    Create / Bids Modal
+                            Backdrop (for modal)
 
 
 # thank you -CF
