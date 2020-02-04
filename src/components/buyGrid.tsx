@@ -14,9 +14,9 @@ interface State {
 interface Props {
   name: string;
   state?: State[];
-  create?: any;
-  place?: any;
-  bid?: any;
+  create?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  place?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  bid?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   view: string;
 }
 
@@ -30,8 +30,8 @@ const BuyGrid: React.FC<Props> = (props) => {
           <h3 className="listing-attribute">{obj.dealID}</h3>
           <h3 className="listing-attribute">{obj.asset}</h3>
           <h3 className="listing-link">
-            {props.name === 'My Deals' && <button onClick={() => props.bid(true)}>{props.view}</button>}
-            {props.name === 'Marketplace' && <button onClick={() => props.place(true)}>{props.view}</button>}
+            {props.name === 'My Deals' && <button onClick={props.bid}>{props.view}</button>}
+            {props.name === 'Marketplace' && <button onClick={props.place}>{props.view}</button>}
           </h3>
         </div>
       )
@@ -52,7 +52,7 @@ const BuyGrid: React.FC<Props> = (props) => {
         </div>
         {props.name === 'My Deals' &&
           <div className="info-line createNew">
-            <button onClick={() => props.create(true)}>
+            <button onClick={props.create}>
               CREATE DEAL
             </button>
           </div>}

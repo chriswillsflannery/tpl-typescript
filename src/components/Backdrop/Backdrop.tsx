@@ -8,6 +8,6 @@ import React from 'react';
 
 import './Backdrop.css';
 
-const Backdrop: React.FC = (props: any) => <div className="backdrop"></div>;
+const Backdrop: React.FC = () => <div className="backdrop"></div>;
 
 export default Backdrop;

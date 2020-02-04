@@ -5,57 +5,13 @@
  * contains main buying and selling logic.
  */
 
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, SyntheticEvent } from 'react';
 import BuyGrid from './buyGrid';
 import Backdrop from './Backdrop/Backdrop';
 import CreateModal from './Modal/CreateModal';
 import BidsModal from './Modal/BidsModal';
+import { reducer, initialState } from './Reducer/reducer';
 import './buyandsell.css';
-
-const initialState = {
-  deals: [{
-    dealID: 'A12345',
-    asset: 'HTT'
-  }, {
-    dealID: 'B34567',
-    asset: 'PSM'
-  }, {
-    dealID: 'C56789',
-    asset: 'PPT'
-  }],
-  marketplace: [{
-    dealID: 'D23456',
-    asset: 'APP'
-  }, {
-    dealID: 'E45678',
-    asset: 'LEG'
-  }, {
-    dealID: 'F89123',
-    asset: 'OOG'
-  }]
-}
-
-function reducer(state: any, action: any) {
-  switch (action.type) {
-    case 'setMyDeals':
-
-      return {
-        ...state,
-        deals: [
-          ...state.deals,
-          action.payload
-        ]
-      };
-    case 'setMarketPlace':
-      return {
-        ...state,
-        marketplace: [
-          ...state.marketplace,
-          action.payload
-        ]
-      };
-  }
-}
 
 const BuyAndSell: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -64,17 +20,27 @@ const BuyAndSell: React.FC = () => {
   const [bidding, setBidding] = useState<boolean>(false);
   const [assetName, setAssetName] = useState<string>('');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (creating) {
-      //dispatch action
       dispatch({ type: 'setMyDeals', payload: { dealID: 'XXXXXX', asset: assetName } });
-      // close backdrop
       setCreating(false);
     } else if (placing) {
       setPlacing(false);
       alert("Bid Placed!");
     }
+  }
+
+  const handleCreate = () => {
+    setCreating(true);
+  }
+
+  const handleBid = () => {
+    setBidding(true);
+  }
+
+  const handlePlace = () => {
+    setPlacing(true);
   }
 
   const handleXClick = () => {
@@ -86,7 +52,6 @@ const BuyAndSell: React.FC = () => {
   const handleAccept = () => {
     setBidding(false);
     alert("Bid accepted!")
-    // move to next window
     window.open('/', '_blank');
   }
 
@@ -141,14 +106,14 @@ const BuyAndSell: React.FC = () => {
           name="My Deals"
           view="View Bids"
           state={state.deals}
-          create={setCreating}
-          bid={setBidding}
+          create={handleCreate}
+          bid={handleBid}
         />
         <BuyGrid
           name="Marketplace"
           view="Place Bid"
           state={state.marketplace}
-          place={setPlacing} />
+          place={handlePlace} />
       </div>
     </>
   )

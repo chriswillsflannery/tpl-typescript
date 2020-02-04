@@ -1,3 +1,10 @@
+/**
+ * @author @chriswillsflannery
+ * @exports App
+ * a stateless functional component which renders the app.
+ * uses React Router for SPA pagination/navigation
+ */
+
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom';
 import About from './components/about';
