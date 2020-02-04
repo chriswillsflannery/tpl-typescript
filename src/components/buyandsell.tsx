@@ -1,3 +1,10 @@
+/**
+ * @author @chriswillsflannery
+ * @exports BuyAndSell
+ * a stateful functional component which displays the buy/sell view.
+ * contains main buying and selling logic.
+ */
+
 import React, { useState, useReducer } from 'react';
 import BuyGrid from './buyGrid';
 import Backdrop from './Backdrop/Backdrop';
@@ -52,11 +59,10 @@ function reducer(state: any, action: any) {
 
 const BuyAndSell: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [creating, setCreating] = useState(false);
-  const [placing, setPlacing] = useState(false);
-  const [bidding, setBidding] = useState(false);
-  const [assetName, setAssetName] = useState('');
-  const [viewBidsClicked, setViewBidsClicked] = useState('');
+  const [creating, setCreating] = useState<boolean>(false);
+  const [placing, setPlacing] = useState<boolean>(false);
+  const [bidding, setBidding] = useState<boolean>(false);
+  const [assetName, setAssetName] = useState<string>('');
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -71,8 +77,7 @@ const BuyAndSell: React.FC = () => {
     }
   }
 
-  const handleXClick = (e: any) => {
-    console.log("HANDLED");
+  const handleXClick = () => {
     setCreating(false);
     setPlacing(false);
     setBidding(false);
@@ -105,6 +110,7 @@ const BuyAndSell: React.FC = () => {
           </div>
         </form>
       </CreateModal>}
+
       {placing && <CreateModal action="placing" handleClick={handleXClick}>
         <form onSubmit={handleSubmit}>
           <div className="form-control">
@@ -127,8 +133,8 @@ const BuyAndSell: React.FC = () => {
         handleClick={handleXClick}
         handleAccept={handleAccept}
       >
-
       </BidsModal>}
+
       {(creating || placing || bidding) && <Backdrop />}
       <div className="buyandsell">
         <BuyGrid
@@ -137,7 +143,6 @@ const BuyAndSell: React.FC = () => {
           state={state.deals}
           create={setCreating}
           bid={setBidding}
-          vbc={setViewBidsClicked}
         />
         <BuyGrid
           name="Marketplace"

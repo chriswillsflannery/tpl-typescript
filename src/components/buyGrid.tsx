@@ -1,3 +1,9 @@
+/**
+ * @author @chriswillsflannery
+ * @exports BuyGrid
+ * a stateless functional component which renders a "bids" or "market" div.
+ */
+
 import React from 'react';
 
 interface State {
@@ -11,7 +17,6 @@ interface Props {
   create?: any;
   place?: any;
   bid?: any;
-  vbc?: any;
   view: string;
 }
 
@@ -25,8 +30,8 @@ const BuyGrid: React.FC<Props> = (props) => {
           <h3 className="listing-attribute">{obj.dealID}</h3>
           <h3 className="listing-attribute">{obj.asset}</h3>
           <h3 className="listing-link">
-            {props.name === 'My Deals' && <a onClick={() => props.bid(true)}>{props.view}</a>}
-            {props.name === 'Marketplace' && <a onClick={() => props.place(true)}>{props.view}</a>}
+            {props.name === 'My Deals' && <button onClick={() => props.bid(true)}>{props.view}</button>}
+            {props.name === 'Marketplace' && <button onClick={() => props.place(true)}>{props.view}</button>}
           </h3>
         </div>
       )
@@ -47,10 +52,9 @@ const BuyGrid: React.FC<Props> = (props) => {
         </div>
         {props.name === 'My Deals' &&
           <div className="info-line createNew">
-            <button onClick={() => {
-              console.log('hit');
-              props.create(true)
-            }}>CREATE DEAL</button>
+            <button onClick={() => props.create(true)}>
+              CREATE DEAL
+            </button>
           </div>}
       </div>
     </main>

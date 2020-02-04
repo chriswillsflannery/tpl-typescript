@@ -1,3 +1,9 @@
+/**
+ * @author @chriswillsflannery
+ * @exports BidsModal
+ * a stateless functional component which renders a modal window.
+ */
+
 import React from 'react';
 import "./Modal.css";
 
@@ -20,7 +26,12 @@ const dummyBids = [
   }
 ]
 
-const BidsModal = (props: any) => {
+interface Props {
+  handleClick: (event: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => void;
+  handleAccept: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
+const BidsModal: React.FC<Props> = (props) => {
   const bids: object[] = [];
   dummyBids.forEach((bid, idx) => {
     bids.push(

@@ -1,8 +1,19 @@
+/**
+ * @author @chriswillsflannery
+ * @exports CreateModal
+ * a stateless functional component which renders a modal window.
+ */
+
 import React from 'react';
 
 import './Modal.css';
 
-const CreateModal = (props: any) => (
+interface Props {
+  action: string;
+  handleClick: (event: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => void;
+}
+
+const CreateModal: React.FC<Props> = (props) => (
   <div className="modal">
     <header className="modal-header">
       {props.action === 'creating' ?

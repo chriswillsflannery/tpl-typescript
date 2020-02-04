@@ -86,8 +86,11 @@
   color: var(--green);
 }
 
-.listing-link a {
+.listing-link button {
   color: white;
+  background: none;
+  border: none;
+  font-size: 1rem;
   text-decoration: none;
   cursor: pointer;
 }
